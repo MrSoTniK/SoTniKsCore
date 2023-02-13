@@ -14,7 +14,7 @@ namespace Core.Infrastructure.Controllers
         protected abstract void OnEntityActionInvoked();
     }
 
-    public abstract class ControllerBase<TControlledEntity, TValue> : IController
+    public abstract class ControllerBase<TControlledEntity,TValue> : IController
     {
         private readonly List<TControlledEntity> _controlledEntities;
 
