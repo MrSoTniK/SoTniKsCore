@@ -81,6 +81,7 @@ __ViewsInstaller__
 __EcsGameStartup__
 - Класс, реализующий работу классов-систем проекта.
 Получается логика: один Awake, Start, Update, FixedUpdate (методы MonoBehaviour) на проект. 
+
 __EcsSceneStartup__
 - Класс, наследники которого реализуют работу классов-систем проекта.
 Получается логика: один Awake, Start, Update, FixedUpdate (методы MonoBehaviour) на сцену. 
