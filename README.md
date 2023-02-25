@@ -108,6 +108,7 @@ __DataBaseAbstract__
 ### Core/Views
 __ViewBase__
 - Класс-наследник MonoBehaviour для игровых объектов, в которых необходимо использование методов, не входящих в логику работы с Ecs, например, физические взаимодействия, реализуемых посредством методов OnTriggerEnter, OnTriggerExit.
+
 __InitializeViewRequest__
 - Реквест для инициализации поля типа EcsEntity
 __InitializeViewRequestProvider__
