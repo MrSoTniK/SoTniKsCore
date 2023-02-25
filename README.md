@@ -6,7 +6,8 @@ https://github.com/voody2506/UniLeo
 - DI (Zenject)
 https://github.com/matterport/Zenject
 
-Описание классификации классов в папке Game
+** **Описание классификации классов в папке Game
+
 /Components
 Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
 /Controllers
