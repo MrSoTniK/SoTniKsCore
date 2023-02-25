@@ -38,7 +38,7 @@ https://github.com/matterport/Zenject
   
 </details>
 
-## Описание ядра (Core) архитетуры
+## Описание ядра (Core) архитектуры
 
 <details>
 <summary>Подробнее</summary>
