@@ -8,7 +8,8 @@ https://github.com/matterport/Zenject
 
 ## Описание классификации классов в папке Game
 
-<Подробнее>
+<details>
+<summary>Details</summary>
 ### /Components
 Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
 ### /Controllers
@@ -33,7 +34,7 @@ https://github.com/matterport/Zenject
 Классы, реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem.
 ### /Views
 Классы-наследники ViewBase или MonoBehaviour.
-</Подробнее>
+</details>
 
 ## Описания ядра (Core) архитетуры
 Основные классы архитектуры содержатся в папке Core. Производные от этих классов или какие-либо не связанные с архитектурой скрипты содержатся в папке Game.
