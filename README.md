@@ -43,7 +43,7 @@ https://github.com/matterport/Zenject
 В поле со списком Mono Installers помещаются скрипты, классы которых являются наследниками класса MonoInstaller.
 ### Core/Infrastructure/Installers
 ### /Bootstrap
-BootstrapInstaller
+- __ __BootstrapInstaller__ __
 Создаёт и инициализирует основной класс LeoECS EcsWorld, создаёт и биндит различные классы-инструменты (Core/Tools) и EcsGameStratup.
 BootstrapSceneInstaller
 Создаёт поле основного класса-наследника EcsSceneGameStratup, экземпляр которого создаётся и биндится в наследниках BootstrapSceneInstaller
