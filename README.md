@@ -10,27 +10,27 @@ https://github.com/matterport/Zenject
 
 ### /Components
 Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
-/Controllers
+### /Controllers
 Классы, подписывающиеся на события и обрабатывающие взаимодействие с этими событиями (events).
-/Data
+### /Data
 Классы, содержащие данные, которые не меняются в течение игровой сессии.
-/Info
+### /Info
 Классы, содержащие данные, которые меняются в течение игровой сессии.
-/Installers
+### /Installers
 Классы – наследники MonoInstaller класса.
-/Providers
+### /Providers
 Провайдеры для структур, которые используются в EcsFilter.
-/Requests
+### /Requests
 Структуры, которые используется в EcsFilter, но обозначающие какой-либо запрос на действие, которое должно быть осуществлено соответствующей системой (например, JumpRequest, ShootRequest, MakeNewObjectRequest и т.д.).
-/Tags
+### /Tags
 Структуры, которые используется в EcsFilter, но у которых нет каких-либо полей и которые служат чисто в качестве маркера игрового объекта.
-/Scenes
+### /Scenes
 Классы – наследники EcsSceneStartup.
-/ScriptableObjects
+### /ScriptableObjects
 Классы наследники DataBaseAbstract или просто наследники ScriptableObject.
-/Systems
+### /Systems
 Классы, реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem.
-/Views
+### /Views
 Классы-наследники ViewBase или MonoBehaviour.
 
 ## Описания ядра (Core) архитетуры
@@ -39,10 +39,10 @@ https://github.com/matterport/Zenject
 Логика работы проекта состоит из классов, которые работают во всём проекте и классов, которые работают в рамках конкретных сцен (то есть у каждой сцены есть свои скрипты с логикой).
 В качестве фундамента построения архитектуры используется Dependency Injection, реализуемый в Zenject’е. Для работы данного фреймворка используются классы 
 - SceneContext, который должен висеть на GameObject с таким же именем для сцен.
--ProjectContext, прфеаб с которым должен находится в папке Resources.
+- ProjectContext, прфеаб с которым должен находится в папке Resources.
 В поле со списком Mono Installers помещаются скрипты, классы которых являются наследниками класса MonoInstaller.
-Core/Infrastructure/Installers
-/Bootstrap
+### Core/Infrastructure/Installers
+####/Bootstrap
 BootstrapInstaller
 Создаёт и инициализирует основной класс LeoECS EcsWorld, создаёт и биндит различные классы-инструменты (Core/Tools) и EcsGameStratup.
 BootstrapSceneInstaller
