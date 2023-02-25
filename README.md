@@ -9,7 +9,7 @@ https://github.com/matterport/Zenject
 ## Описание классификации классов в папке Game
 
 <details>
-<summary>Details</summary>
+<summary>Подробнее</summary>
   
 ### /Components
 Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
