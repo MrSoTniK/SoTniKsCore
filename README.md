@@ -6,7 +6,7 @@ https://github.com/voody2506/UniLeo
 - DI (Zenject)
 https://github.com/matterport/Zenject
 
-## Описание классификации классов в папке Game
+## Описание классификации скриптов в папке Game
 
 <details>
 <summary>Подробнее</summary>
