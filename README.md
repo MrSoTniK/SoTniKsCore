@@ -10,6 +10,7 @@ https://github.com/matterport/Zenject
 
 <details>
 <summary>Details</summary>
+  
 ### /Components
 Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
 ### /Controllers
@@ -34,6 +35,7 @@ https://github.com/matterport/Zenject
 Классы, реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem.
 ### /Views
 Классы-наследники ViewBase или MonoBehaviour.
+  
 </details>
 
 ## Описания ядра (Core) архитетуры
