@@ -42,31 +42,31 @@ https://github.com/matterport/Zenject
 - ProjectContext, прфеаб с которым должен находится в папке Resources.
 В поле со списком Mono Installers помещаются скрипты, классы которых являются наследниками класса MonoInstaller.
 ### Core/Infrastructure/Installers
-####/Bootstrap
+### /Bootstrap
 BootstrapInstaller
 Создаёт и инициализирует основной класс LeoECS EcsWorld, создаёт и биндит различные классы-инструменты (Core/Tools) и EcsGameStratup.
 BootstrapSceneInstaller
 Создаёт поле основного класса-наследника EcsSceneGameStratup, экземпляр которого создаётся и биндится в наследниках BootstrapSceneInstaller
 Оба класса требуют поле с наследником MonoInstaller, в котором забиндены классы-системы.
-/Components
+### /Components
 ComponentsInstaller
 В наследниках этого класса биндятся (помещаются в контейнер) структуры-компоненты, которые используются в LeoECS.
-/Controllers
+### /Controllers
 ControllersInstaller
 В наследниках этого класса биндятся классы-контроллеры, которые обрабатывают различные события (events).
-/Data
+### /Data
 DataInstaller
 В наследниках этого класса биндятся файлы, содержащие какие-либо числовые данные.
-/DataBases
+### /DataBases
 DataBasesInstaller
 В наследниках этого класса биндятся ScriptableObjects, которые выступают в роли баз данных.
-/Factories
+### /Factories
 FactoriesSceneInstaller
 В наследниках этого класса биндятся классы-заводы, которые создают новые экземпляры игровых объектов
-/Systems
+### /Systems
 SystemsInstaller
 В наследниках этого класса биндятся классы-системы (реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem)
-/Views
+### /Views
 ViewsInstaller
 В наследниках этого класса биндятся все компоненты наследники ViewBase, который наследуется от MonoBehaviour.
 
@@ -88,24 +88,24 @@ EcsSceneStartup
 RxField
 Класс, в котором осуществляется контроль над сменой значения экземпляра generic типа T.
 
-Core/Infrastructure/Controllers
+### Core/Infrastructure/Controllers
 Здесь содержатся абстрактные классы, в которых прописана структура работы с ивентами.
-Core/Infrastructure/Components
+### Core/Infrastructure/Components
 Здесь находятся интерфейсы для различных видов структур компонент, используемых в LeoEcs.
-Core/Data
+### Core/Data
 DataAbstract
 Класс, от которого могут наследоваться классы, содержащие данные в виде числовых значений или каких-либо других данных (типо экземпляров классов).
-Core/Extensions
+### Core/Extensions
 Здесь лежат расширения в виде новых методов для классов плагинов или packages.
-Core/Factories
+### Core/Factories
 FactoryAbstract
 Содержит классы для создания экземпляров игровых объектов, темплейты которых берутся из баз данных.
-Core/ScriptableObjects
+### Core/ScriptableObjects
 DataBaseAbstract
 Абстрактный класс для создания базы данных с методами выбора её элемента.
-Core/Tools
+### Core/Tools
 Место хранения классов, выступающих в качестве вспомогательных помощников. Например, рандомайзера, загрузчика новых сцен.
-Core/Views
+### Core/Views
 ViewBase
 Класс-наследник MonoBehaviour для игровых объектов, в которых необходимо использование методов, не входящих в логику работы с Ecs, например, физические взаимодействия, реализуемых посредством методов OnTriggerEnter, OnTriggerExit.
 InitializeViewRequest
@@ -114,4 +114,3 @@ InitializeViewRequestProvider
 Провайдер реквеста
 ViewsEntityInitializingSystem
 Система, реализующая логику инициализации
-
