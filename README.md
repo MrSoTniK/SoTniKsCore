@@ -12,7 +12,7 @@ https://github.com/matterport/Zenject
 <summary>Подробнее</summary>
   
 ### /Components
-Обычные структуры, которые используется в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
+Обычные структуры, которые используются в EcsFilter. Под обычными понимаются компоненты, содержащие поля.
 ### /Controllers
 Классы, подписывающиеся на события и обрабатывающие взаимодействие с этими событиями (events).
 ### /Data
@@ -30,7 +30,7 @@ https://github.com/matterport/Zenject
 ### /Scenes
 Классы – наследники EcsSceneStartup.
 ### /ScriptableObjects
-Классы наследники DataBaseAbstract или просто наследники ScriptableObject.
+Классы-наследники DataBaseAbstract или просто наследники ScriptableObject.
 ### /Systems
 Классы, реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem.
 ### /Views
