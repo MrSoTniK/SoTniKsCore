@@ -11,6 +11,12 @@ namespace Core.Factories
         protected TDataBase DataBase;
         protected Randomizer Randomizer;
 
+        public FactoryAbstract(TDataBase dataBase, Randomizer randomizer) 
+        {
+            DataBase = dataBase;
+            Randomizer = randomizer;
+        }
+
         public virtual TElement Create(int index, Vector3 position)
         {
             if (DataBase.GetElementByIndex(index, out TElement element))
@@ -57,6 +63,5 @@ namespace Core.Factories
         public abstract TElement CreateRandom(int dataIndex, Vector3 position);
 
         public abstract TElement CreateRandom(int dataIndex, Vector3 position, Transform parent);
-       
     }
 }

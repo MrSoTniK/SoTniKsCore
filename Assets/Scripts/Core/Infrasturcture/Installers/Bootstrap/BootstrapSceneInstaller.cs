@@ -1,21 +1,25 @@
-using Core.World;
-using Leopotam.Ecs;
+using System;
 using UnityEngine;
 using Zenject;
 
 namespace Core.Infrastructure.Installers.Bootstrap 
 {
-    public abstract class BootstrapSceneInstaller<TSystemsInstaller, TEcsSceneStratup> : MonoInstaller where TSystemsInstaller : MonoInstaller
-        where TEcsSceneStratup : EcsSceneStartup
+    public abstract class BootstrapSceneInstaller<TSystemsInstaller, TEcsSceneStratup, TSceneType, TSceneInfo> : MonoInstaller 
+        where TSystemsInstaller : MonoInstaller
+        where TEcsSceneStratup : EcsSceneStartup<TSceneType>
+        where TSceneType : Enum
+        where TSceneInfo : SceneInfoAbstract<TSceneType>
     {
         [SerializeField] protected TSystemsInstaller SceneSystemsInstaller;
 
-        protected EcsWorld World;
+        protected WorldsInfo WorldsInfo;
+        protected TSceneInfo SceneInfo;
 
         [Inject]
-        public void Construct(EcsWorld world)
+        public void Construct(WorldsInfo worldsInfo, TSceneInfo sceneInfo)
         {
-            World = world;
+            WorldsInfo = worldsInfo;
+            SceneInfo = sceneInfo;
         }
 
         protected TEcsSceneStratup EcsSceneStratup;

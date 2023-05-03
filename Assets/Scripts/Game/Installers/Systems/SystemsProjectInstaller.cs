@@ -1,5 +1,4 @@
 using Core.Infrastructure.Installers.Systems;
-using Core.Views;
 
 namespace Game.Installers.Systems 
 {
@@ -7,7 +6,7 @@ namespace Game.Installers.Systems
     {
         protected override void AddPreInitSystems()
         {
-           
+            
         }
 
         protected override void AddInitSystems()
@@ -17,9 +16,7 @@ namespace Game.Installers.Systems
 
         protected override void AddRunSystems()
         {
-            var viewsEntityInitializingSystem = Container.Instantiate<ViewsEntityInitializingSystem>();
-            Container.Bind<ViewsEntityInitializingSystem>().FromInstance(viewsEntityInitializingSystem);
-            EcsRunSystems.Add(viewsEntityInitializingSystem);
+            
         }
 
         protected override void AddFixedRunSystems()

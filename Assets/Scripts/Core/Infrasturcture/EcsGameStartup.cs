@@ -1,6 +1,5 @@
 using Leopotam.Ecs;
 using Zenject;
-using Voody.UniLeo;
 using System.Collections.Generic;
 using Core.Tools;
 
@@ -41,7 +40,7 @@ namespace Core.Infrastructure
         {
             /*We need only one system for this method because this method creates EcsSystem which
             must exist as single exemplar only!*/
-            _updateSystems.ConvertScene();
+           /* _updateSystems.ConvertScene();*/
 
             AddSystems();
             AddOneFrames();
@@ -102,7 +101,9 @@ namespace Core.Infrastructure
             }
 
             if(_world != null)
+            {
                 _world.Destroy();
+            }
 
             ScenesLoader.Instance.Clear();
         }

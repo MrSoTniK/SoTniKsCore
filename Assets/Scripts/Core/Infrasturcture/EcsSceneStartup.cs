@@ -1,13 +1,16 @@
 using Leopotam.Ecs;
 using Zenject;
 using System.Collections.Generic;
-using Core.World;
+using System;
 
 namespace Core.Infrastructure 
 {
-    public abstract class EcsSceneStartup : IInitializable, ITickable, IFixedTickable, ILateDisposable
+    public abstract class EcsSceneStartup<TSceneType> : IInitializable, ITickable, IFixedTickable, ILateDisposable where TSceneType : Enum
     {
         protected readonly EcsWorld World;
+        protected readonly WorldsInfo WorldsInfo;
+
+        protected readonly TSceneType SceneType;
 
         protected EcsSystems _initializeSystems;
         protected EcsSystems _preInitializeSystems;
@@ -23,9 +26,12 @@ namespace Core.Infrastructure
         protected bool FixedUpdateSystemsExist;
 
         public EcsSceneStartup(List<IEcsPreInitSystem> ecsPreInitSystems, List<IEcsInitSystem> ecsInitSystems,
-                              List<IEcsRunSystem> ecsRunSystems, List<IEcsRunSystem> ecsFixedRunSystems, EcsWorld world) 
+                              List<IEcsRunSystem> ecsRunSystems, List<IEcsRunSystem> ecsFixedRunSystems, 
+                              EcsWorld world, WorldsInfo worldsInfo, TSceneType sceneType) 
         {
             World = world;
+            WorldsInfo = worldsInfo;
+            SceneType = sceneType;
             _preInitializeSystems = new(World);
             _initializeSystems = new(World);
             _updateSystems = new(World);
@@ -39,8 +45,6 @@ namespace Core.Infrastructure
 
         public void Initialize()
         {
-            _preInitializeSystems.Add(new WorldConvertingPreInitSystem());
-
             AddSystems();
             AddOneFrames();
             AddInjections();
@@ -102,6 +106,16 @@ namespace Core.Infrastructure
 
                 _ecsFixedRunSystems = null;
                 _fixedUpdateSystems = null;
+            }
+
+            if (World != null) 
+            {
+                World.Destroy();
+                int key = Convert.ToInt32(SceneType);
+                if (WorldsInfo.WorldsDictionary.ContainsKey(key)) 
+                {
+                    WorldsInfo.WorldsDictionary.Remove(key);
+                }
             }
         }     
 
