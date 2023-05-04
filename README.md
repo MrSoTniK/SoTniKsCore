@@ -46,52 +46,74 @@ https://github.com/matterport/Zenject
 <summary>Подробнее</summary>
 
 Основные классы архитектуры содержатся в папке Core. Производные от этих классов или какие-либо не связанные с архитектурой скрипты содержатся в папке Game.
-Основная логика работы содержится в Core/Infrastructure
+Основная логика работы содержится в Assets/Scripts/Core/Infrastructure
 Логика работы проекта состоит из классов, которые работают во всём проекте, и классов, которые работают в рамках конкретных сцен (то есть у каждой сцены есть свои скрипты с логикой).
-В качестве фундамента построения архитектуры используется Dependency Injection, реализуемый в Zenject’е. Для работы данного фреймворка используются классы: 
-- __SceneContext__, который должен висеть на GameObject с таким же именем для сцен.
-- __ProjectContext__ - префаб, который должен находиться в папке Resources.
-В поле со списком Mono Installers помещаются скрипты, классы которых являются наследниками класса MonoInstaller.
-### Core/Infrastructure/Installers
+В качестве фундамента построения архитектуры используется Dependency Injection, реализуемый в Zenject’е. Для работы данного фреймворка используются:
+- __SceneContext__ - скрипт, который должен висеть на GameObject с таким же именем для сцен (префабы с данным скриптом в Assets/Prefabs/Contexts/).
+- __ProjectContext__ - скрипт, префаб с которым должен находиться в папке Resources (находится в Assets/Settings/Resources/).
+На префабы контекстов (сцены или проекта) в поле массива MonoInstallers помещаются наследники от класса MonoInstaller, в которых содержатся те классы, которые помещаются в контейнер.
+
+### Принцип работы
+Принцип работы состоит в том, что для каждой сцены и проекта в частности биндятся и инициализируются классы с информацией о сцене через наследников SceneInfoAbstract (один на проект и по одномуна каждую сцену). В SceneInfoAbstract есть поле generic-типа, отвечающее за тип сцены (уникальный индекс). По умолчанию реализовано в Assets/Scripts/Game/Enums/SceneType (у каждой сцены должен быть уникальный тип). Затем биндится и инициализируется класс WorldsInfo, который содержит Dictionary с int-ключом и EcsWorld-значением. Затем создаётся экземляр EcsWorld и добавляется в словарь по уникальном ключу, который берётся с поля наследника SceneInfoAbstract (приведение enum к int методом  Convert.ToInt32(SceneType type)). После этого создаётся и биндятся все системы (классы, реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem). Далее создаётся экземпляр наследника EcsSceneStartup, в котором реализуется работа всех систем, принадлежащих конкретному экземпляру EcsWorld сцены или проекта.
+
+### Assets/Scripts/Core/Infrastructure/Installers
+
 ### /Bootstrap
-__BootstrapInstaller__
-- Создаёт и инициализирует основной класс LeoECS EcsWorld, создаёт и биндит различные классы-инструменты (Core/Tools) и EcsGameStratup.
-BootstrapSceneInstaller
-Создаёт поле основного класса-наследника EcsSceneGameStratup, экземпляр которого создаётся и биндится в наследниках BootstrapSceneInstaller
-Оба класса требуют поле с наследником MonoInstaller, в котором забиндены классы-системы.
+__BootstrapSceneInstaller__
+- Абстрактный класс для создания и инициализации основного класса LeoECS EcsWorld, наследники класса должны создавать и биндить наследников класса EcsSceneStartup.
+BootstrapSceneInstaller требует поле с наследником MonoInstaller, в котором забиндены классы-системы.
+__BootstrapSceneInstaller__
+- Временно не используется, но его использование возможно, если планируется только одна сцена на весь проект. Все те же функции, что и у BootstrapSceneInstaller.
 ### /Components
 __ComponentsInstaller__
-- В наследниках этого класса биндятся (помещаются в контейнер) структуры-компоненты, которые используются в LeoECS.
+- Реализует поиск и конвертацию в Entities всех структур, "обёрнутых" в MonoProvider. Используется только для сцен.
 ### /Controllers
 __ControllersInstaller__
 - В наследниках этого класса биндятся классы-контроллеры, которые обрабатывают различные события (events).
 ### /Data
 __DataInstaller__
-- В наследниках этого класса биндятся файлы, содержащие какие-либо числовые данные.
+- В наследниках этого класса биндятся файлы, содержащие какие-либо числовые данные и наследники SceneInfoAbstract, тип сцены задётся через поле SceneType.
 ### /DataBases
 __DataBasesInstaller__
 - В наследниках этого класса биндятся ScriptableObjects, которые выступают в роли баз данных.
 ### /Factories
 __FactoriesSceneInstaller__
-- В наследниках этого класса биндятся классы-заводы, которые создают новые экземпляры игровых объектов
+- В наследниках этого класса биндятся классы-заводы, которые создают новые экземпляры игровых объектов.
 ### /Systems
 __SystemsInstaller__
-- В наследниках этого класса биндятся классы-системы (реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem)
+- В наследниках этого класса биндятся классы-системы (реализующие интерфейсы IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem).
 ### /Views
 __ViewsInstaller__
 - В наследниках этого класса биндятся все компоненты наследники ViewBase, который наследуется от MonoBehaviour.
+### /World
+__WorldInstallerAbstract__
+- Абстрактный класс, который создаёт экзепляр EcsWorld и помещает его в Dictionary WorldsInfo по ключу, конвертируемого от поля SceneType наследника SceneInfoAbstract.
+__WorldsInfoInstaller__
+- Один на проект!!!  Создаёт экземпляр и биндит WorldsInfo.
 
 ### Установленный порядок следования инсталлеров в Scene- или Project- Context'ах
-- FactoriesInstaller
-- DataBasesInstaller
-- DataInstaller
-- ControllersInstaller
-- SystemsInstaller
-- BootstrapInstaller или BoorstrapSceneInstaller
+для ProjectContext:
+- DataBasesProjectInstaller (наследник DataBasesInstaller)
+- DataProjectInstaller (наследник DataInstaller)
+- WorldsInfoInstaller
+- ProjectWorldInstaller (наследник WorldInstallerAbstract)
+- ToolsInstaller (наследник MonoInstaller для каких-либо классов в которых реализованы методы со сторонней логикой, например класс Randomizer)
+- SystemsProjectInstaller (наследник SystemsInstaller)
+- BootstrapInstaller (наследник BootstrapSceneInstaller)
+
+для SceneContext (например, для сцены Game, Assets/Prefabs/Contexts/GameSceneContext.prefab):
+- GameDataBasesInstaller (наследник DataBasesInstaller)
+- GameDataInstaller (наследник DataInstaller)
+- GameSceneWorldInstaller (наследник WorldInstallerAbstract)
+- ComponentsGameInstaller (наследник ComponentsInstaller)
+- GameFactoriesInstaller (наследник FactoriesSceneInstaller)
+- GameViewsInstaller (наследник ViewsInstaller)
+- GameSystemsInstaller (наследник SystemsInstaller)
+- GameBootstrapInstaller (наследник BootstrapSceneInstaller)
 
 __EcsGameStartup__
-- Класс, реализующий работу классов-систем проекта.
-Получается логика: один Awake, Start, Update, FixedUpdate (методы MonoBehaviour) на проект. 
+- Класс, реализующий работу классов-систем проекта (!!!временно не используется, но его исопльзование возможно, если одна сцена на весь проект!!!)
+Получается логика: один Awake, Start, Update, FixedUpdate (методы MonoBehaviour) на проект.
 
 __EcsSceneStartup__
 - Класс, наследники которого реализуют работу классов-систем проекта.
@@ -117,10 +139,22 @@ __DataBaseAbstract__
 - Абстрактный класс для создания базы данных с методами выбора её элемента.
 ### Core/Tools
 - Место хранения классов, выступающих в качестве вспомогательных помощников. Например, рандомайзера, загрузчика новых сцен.
+__JsonManager__
+- Статический класс для загрузки или сохранения через использование json-файлов
+__Randomizer__
+- Класс для получения случайных интовых значений
+__ScenesLoader__ 
+- Статический класс для загрузки-выгрузки игровых сцен
+(!!!опционально!!!, не особо используется, но может пригодиться)
+__WorldGetter__
+- Статический класс для получения экземпляра EcsWorld
+__WorldMessageSender__
+- Статический класс для добавления новых Entities в экземпляр класса EcsWorld
 ### Core/Views
 __ViewBase__
 - Класс-наследник MonoBehaviour для игровых объектов, в которых необходимо использование методов, не входящих в логику работы с Ecs, например, физические взаимодействия, реализуемых посредством методов OnTriggerEnter, OnTriggerExit.
 
+(опционально)
 __InitializeViewRequest__
 - Реквест для инициализации поля типа EcsEntity
 
@@ -129,6 +163,6 @@ __InitializeViewRequestProvider__
 
 __ViewsEntityInitializingSystem__
 - Система, реализующая логику инициализации
-  
+ 
   </details>
   
