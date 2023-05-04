@@ -92,7 +92,7 @@ __WorldsInfoInstaller__
 - Один на проект!!!  Создаёт экземпляр и биндит WorldsInfo.
 
 ### Установленный порядок следования инсталлеров в Scene- или Project- Context'ах
-для ProjectContext:
+### для ProjectContext:
 - DataBasesProjectInstaller (наследник DataBasesInstaller)
 - DataProjectInstaller (наследник DataInstaller)
 - WorldsInfoInstaller
@@ -101,7 +101,7 @@ __WorldsInfoInstaller__
 - SystemsProjectInstaller (наследник SystemsInstaller)
 - BootstrapInstaller (наследник BootstrapSceneInstaller)
 
-для SceneContext (например, для сцены Game, Assets/Prefabs/Contexts/GameSceneContext.prefab):
+### для SceneContext (например, для сцены Game, Assets/Prefabs/Contexts/GameSceneContext.prefab):
 - GameDataBasesInstaller (наследник DataBasesInstaller)
 - GameDataInstaller (наследник DataInstaller)
 - GameSceneWorldInstaller (наследник WorldInstallerAbstract)
@@ -155,7 +155,7 @@ __Назначение__
 __ViewBase__
 - Класс-наследник MonoBehaviour для игровых объектов, в которых необходимо использование методов, не входящих в логику работы с Ecs, например, физические взаимодействия, реализуемых посредством методов OnTriggerEnter, OnTriggerExit.
 
-(опционально)
+__(опционально)__
 __InitializeViewRequest__
 - Реквест для инициализации поля типа EcsEntity
 
