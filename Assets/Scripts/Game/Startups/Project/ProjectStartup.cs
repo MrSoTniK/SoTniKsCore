@@ -3,7 +3,7 @@ using Game.Enums.Scenes;
 using Leopotam.Ecs;
 using System.Collections.Generic;
 
-namespace Game.Scenes.Project 
+namespace Game.Startups.Project 
 {
     public class ProjectStartup : EcsSceneStartup<SceneType>
     {

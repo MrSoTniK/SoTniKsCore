@@ -1,0 +1,29 @@
+{
+    "name": "Startups",
+    "rootNamespace": "",
+    "references": [
+        "GUID:423608d1c06c0f14a97dc38819c17826",
+        "GUID:656c2c43d3cfe4855bd40e058874b0be",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:659b27d185485b141b6a3efd53b1ca1d",
+        "GUID:f69b6fdee43c94f4a98f5331f661217c",
+        "GUID:e6fb7348e9d1c7142a54b6161ca783e7",
+        "GUID:7a4577706bb0627489e929af2aecd826",
+        "GUID:d0d2ffd694b32284b9b227095776d5ff",
+        "GUID:f3e0d9618bf96084798fbde0879efaaa",
+        "GUID:42eba1426b240094ca7ea60ee710856c",
+        "GUID:9e5962133db66e44ba96fe128ba06b9a",
+        "GUID:a7b00c3925a3fa348a11147cb35d6883",
+        "GUID:171feeeae2d24a04a97fdb05f913c941",
+        "GUID:b4b24c44518949247bfeed1395cf956d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

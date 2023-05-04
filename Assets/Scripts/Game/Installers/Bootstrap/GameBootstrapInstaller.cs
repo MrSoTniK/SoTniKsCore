@@ -3,7 +3,7 @@ using Core.Tools;
 using Game.Enums.Scenes;
 using Game.Info.Scenes;
 using Game.Installers.Systems;
-using Game.Scenes.Game;
+using Game.Startups.Game;
 using Leopotam.Ecs;
 
 namespace Game.Installers.Bootstrap 

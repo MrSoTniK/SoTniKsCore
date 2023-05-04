@@ -3,7 +3,7 @@ using Game.Enums.Scenes;
 using Leopotam.Ecs;
 using System.Collections.Generic;
 
-namespace Game.Scenes.MainMenu 
+namespace Game.Startups.MainMenu 
 { 
     public class MainMenuStartup : EcsSceneStartup<SceneType>
     {
