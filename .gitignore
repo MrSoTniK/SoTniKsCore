@@ -1,0 +1,8 @@
+﻿*.csproj
+SoTniKsCore.sln
+UserSettings
+.vs
+Library
+Logs
+obj
+Temp
