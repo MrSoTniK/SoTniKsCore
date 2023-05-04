@@ -34,9 +34,6 @@ namespace Core.Infrastructure.Installers.Bootstrap
             BindEscSceneStartup();
         }
 
-        protected virtual void BindEscSceneStartup() 
-        {
-            
-        }
+        protected abstract void BindEscSceneStartup();       
     }
 }

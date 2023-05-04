@@ -1,11 +1,13 @@
-using Core.Infrastructure;
 using Zenject;
 
-public class WorldsInfoInstaller : MonoInstaller
+namespace Core.Infrastructure.Installers.World 
 {
-    public override void InstallBindings()
+    public class WorldsInfoInstaller : MonoInstaller
     {
-        WorldsInfo worldsInfo = new();
-        Container.Bind<WorldsInfo>().FromInstance(worldsInfo).AsSingle();
+        public override void InstallBindings()
+        {
+            WorldsInfo worldsInfo = new();
+            Container.Bind<WorldsInfo>().FromInstance(worldsInfo).AsSingle();
+        }
     }
 }
